@@ -193,8 +193,8 @@ def get_command_line_args():
         description="Automatically switches day and night themes based on the current time of day.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
-    parser.add_argument('-d', '--day-theme', type=str, help='print location and sun event times')
-    parser.add_argument('-n', '--night-theme', type=str, help='print location and sun event times')
+    parser.add_argument('-d', '--day-theme', type=str, help='set a day theme')
+    parser.add_argument('-n', '--night-theme', type=str, help='set a night theme')
     parser.add_argument('-l', '--location-redetect', action='store_true', help='discards the previously saved location and attempts detection again')
     parser.add_argument('-v', '--verbose', action='store_true', help='print location and sun event times')
     parser.add_argument(
