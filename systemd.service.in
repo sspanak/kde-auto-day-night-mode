@@ -1,0 +1,9 @@
+[Unit]
+Description=Automatic day/night mode switcher
+
+[Service]
+Type=simple
+ExecStart=python /usr/local/bin/linux-auto-day-night-mode.py -d DAY -n NIGHT
+
+[Install]
+WantedBy=default.target

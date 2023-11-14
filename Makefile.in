@@ -1,0 +1,26 @@
+MAKEFLAGS += --no-print-directory
+SHELL := /bin/bash
+
+default:
+	@echo "Nothing to do, just run 'make install'"
+
+install:
+	cp systemd.service ${HOME}/.config/systemd/user/SERVICE_NAME.service \
+	&& cp systemd.timer ${HOME}/.config/systemd/user/SERVICE_NAME.timer \
+	&& sudo cp SERVICE_NAME.py /usr/local/bin/ \
+	&& systemctl --user enable SERVICE_NAME.service \
+	&& systemctl --user start SERVICE_NAME.timer \
+	&& systemctl --user enable SERVICE_NAME.timer
+
+uninstall:
+	systemctl --user stop SERVICE_NAME.timer
+	systemctl --user disable SERVICE_NAME.timer
+	systemctl --user disable SERVICE_NAME.service
+	rm -f ${HOME}/.config/systemd/user/SERVICE_NAME.timer
+	rm -f ${HOME}/.config/systemd/user/SERVICE_NAME.service
+	sudo rm -f /usr/local/bin/SERVICE_NAME.py
+
+clean:
+	rm systemd.service
+	rm systemd.timer
+	rm Makefile

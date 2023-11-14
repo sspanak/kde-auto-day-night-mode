@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if ! [[ -f systemd.service.in ]]; then
+	echo 'systemd.service.in not found. Aborting.'
+	exit 1
+fi
+
+echo ">>>>>>>>>> Select a theme from the list <<<<<<<<<<"
+lookandfeeltool -l
+echo ===================
+
+read -p "Day Theme: " day
+read -p "Night Theme: " night
+service_name='linux-auto-day-night-mode'
+
+sed "s/DAY/${day}/" systemd.service.in | sed "s/NIGHT/${night}/" > systemd.service
+sed "s/SERVICE_NAME/${service_name}/" systemd.timer.in > systemd.timer
+sed "s/SERVICE_NAME/${service_name}/" Makefile.in > Makefile
