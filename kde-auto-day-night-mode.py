@@ -201,7 +201,7 @@ def get_command_line_args():
         '-f',
         '--location-cache-file',
         type=str,
-        default=os.path.join(os.path.expanduser('~'), '.cache', 'linux-auto-day-night-geolocation'),
+        default=os.path.join(os.path.expanduser('~'), '.cache', os.path.basename(__file__).replace(".py", "")),
         help='set custom path of the where-am-i script'
     )
     parser.add_argument(
